@@ -2,7 +2,7 @@ var express = require("express");
 var cors = require("cors");
 require("dotenv").config();
 const multer = require("multer");
-// const upload = multer({ dest: "uploads/" });
+const upload = multer({ dest: process.cwd() + "/uploads/" });
 
 var app = express();
 app.use(express.urlencoded({ extended: true }));
@@ -14,12 +14,12 @@ app.get("/", function (req, res) {
   res.sendFile(process.cwd() + "/views/index.html");
 });
 
-// app.post("/api/fileanalyse", upload.single("upfile"), function (req, res) {
-//   console.log(req);
-//   console.log(req.body);
-//   console.log(req.file);
-//   res.json(req.body);
-// });
+app.post("/api/fileanalyse", upload.single("upfile"), function (req, res) {
+  console.log(req);
+  console.log(req.body);
+  console.log(req.file);
+  res.json(req.body);
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, function () {

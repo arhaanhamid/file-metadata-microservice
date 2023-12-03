@@ -25,8 +25,6 @@ app.get("/", function (req, res) {
 });
 
 app.post("/api/fileanalyse", upload.single("upfile"), function (req, res) {
-  console.log(req);
-  console.log(req.body);
   console.log(req.file);
   res.json({
     name: req.file.filename,

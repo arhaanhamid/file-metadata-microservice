@@ -2,7 +2,23 @@ var express = require("express");
 var cors = require("cors");
 require("dotenv").config();
 const multer = require("multer");
-const upload = multer({ dest: "./uploads/" });
+const upload = multer({ dest: "/public" });
+
+const fs = require("fs");
+
+const directoryPath = "public";
+
+fs.access(directoryPath, fs.constants.W_OK, (err) => {
+  if (err) {
+    console.error(
+      `The server does not have write access to the '${directoryPath}' directory.`
+    );
+  } else {
+    console.log(
+      `The server has write access to the '${directoryPath}' directory.`
+    );
+  }
+});
 
 var app = express();
 

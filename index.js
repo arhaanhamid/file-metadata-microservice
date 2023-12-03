@@ -2,23 +2,7 @@ var express = require("express");
 var cors = require("cors");
 require("dotenv").config();
 const multer = require("multer");
-const upload = multer({ dest: process.cwd() + "uploads" });
-
-const fs = require("fs");
-
-const directoryPath = process.cwd() + "/uploads";
-
-fs.access(directoryPath, fs.constants.W_OK, (err) => {
-  if (err) {
-    console.error(
-      `The server does not have write access to the '${directoryPath}' directory.`
-    );
-  } else {
-    console.log(
-      `The server has write access to the '${directoryPath}' directory.`
-    );
-  }
-});
+const upload = multer({ dest: "uploads/" });
 
 var app = express();
 
@@ -33,6 +17,7 @@ app.post("/api/fileanalyse", upload.single("upfile"), function (req, res) {
   console.log(req);
   console.log(req.body);
   console.log(req.file);
+  res.json(req.body);
 });
 
 const port = process.env.PORT || 3000;

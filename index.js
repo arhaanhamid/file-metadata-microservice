@@ -6,7 +6,7 @@ const upload = multer({ dest: process.cwd() + "uploads" });
 
 const fs = require("fs");
 
-const directoryPath = "/uploads";
+const directoryPath = process.cwd() + "/uploads";
 
 fs.access(directoryPath, fs.constants.W_OK, (err) => {
   if (err) {

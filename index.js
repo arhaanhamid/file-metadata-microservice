@@ -2,9 +2,10 @@ var express = require("express");
 var cors = require("cors");
 require("dotenv").config();
 const multer = require("multer");
-const upload = multer({ dest: "./uploads" });
+const upload = multer({ dest: "uploads/" });
 
 var app = express();
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cors());
 app.use("/public", express.static(process.cwd() + "/public"));
